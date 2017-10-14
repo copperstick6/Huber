@@ -9,7 +9,7 @@ const FOOD_INTENT = 'input.food';
 exports.huber = (req, res) => {
   const app = new ApiAiApp({ request: req, response: res});
   function welcomeIntent(app){
-    app.tell('Welcome to Hueber. This is an app you can use to order food ingredients. Just say a food item you\'d like to eat like Tell Huber I want lasagna, and we\'ll order it for you.')
+    app.ask('Welcome to Hueber. Say any food item and we\'ll order ingredients right to your doorstep.')
   }
   function getFood(app){
 	  let foodItem = app.data.food
@@ -22,7 +22,7 @@ exports.huber = (req, res) => {
   	formData: { food: String(foodItem) } };
 
 	request(options, function (error, response, body) {
-		app.ask("Got your food request! We got a sweet recipe for " + body + "! Check out your order status via your app!")
+		app.tell("Got your food request! We got a sweet recipe for " + body + "! Check out your order status via your app!")
 	});
   }
   let actionMap = new Map();

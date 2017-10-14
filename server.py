@@ -5,6 +5,7 @@ import keys
 import urllib2
 from ingredient_parser.en import parse
 import requests
+import urllib
 
 userChoices = []
 userIngredients = []
@@ -20,7 +21,8 @@ def getIngredients():
 @app.route('/getFood', methods=['POST'])
 def getFood():
 	s = "https://api.edamam.com/search?q="
-	s+= str(request.form['food']) + "&app_id=" + keys.appID() + "&app_key=" + keys.appSecret()
+	s+= str(request.form['food']).replace(" ", "%20") + "&app_id=" + keys.appID() + "&app_key=" + keys.appSecret()
+	print s
 	webUrl  = urllib2.Request(url = s)
 	webUrl = urllib2.urlopen(webUrl)
 	if(webUrl.getcode() == 200):
@@ -34,15 +36,17 @@ def getFood():
 		postReq = []
 		counter = 0
 		for i in range(0, len(results)):
-			postReq.append({"language": "en", "id": str(counter), "text": str(results[i])})
+			postReq.append({"language": "en", "id": str(counter), "text": results[i].encode('utf-8')})
 			counter+=1
 		payload = str({"documents": postReq})
 		headers = {
     	'content-type': "application/json",
     	'ocp-apim-subscription-key': str(keys.azureKey())
     	}
+		print payload
 		response = requests.request("POST", url, data=payload, headers=headers)
 		response = response.json()
+		print response
 		for i in range(0, len(response['documents'])):
 			userIngredients.append(parse(response['documents'][i]['keyPhrases'][0])['name'])
 		userChoices.append(theJSON['hits'][0])
