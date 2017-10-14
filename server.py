@@ -50,7 +50,7 @@ def getFood():
 		for i in range(0, len(response['documents'])):
 			userIngredients.append(parse(response['documents'][i]['keyPhrases'][0])['name'])
 		userChoices.append(theJSON['hits'][0])
-		return str(theJSON['hits'][0]['recipe']['label'])
+		return theJSON['hits'][0]['recipe']['label'].encode('utf-8')
 
 
 app.run(debug=True)
