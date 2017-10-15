@@ -22,7 +22,8 @@ exports.huber = (req, res) => {
   	formData: { food: String(foodItem) } };
 
 	request(options, function (error, response, body) {
-		app.tell("Got your food request! We got a sweet recipe for " + body + "! Check out your order status via your app!")
+		let arr = String(body).split(',')
+		app.tell("Got your food request! We got a sweet recipe for " + arr[0] + "! We'd also like to recommend " + arr[1] + " and " + arr[2] + ". Check out your order status via your app!")
 	});
   }
   let actionMap = new Map();
