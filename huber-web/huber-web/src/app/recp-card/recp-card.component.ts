@@ -7,14 +7,22 @@ import { MatToolbar, MatCardModule } from '@angular/material';
   styleUrls: ['./recp-card.component.css']
 })
 export class RecpCardComponent implements OnInit {
-  name: string;
-  calorie: number;
-  ingredients: string;
+  label: string;
+  ingredientLines: string [];
+  healthLabels: string [];
+  dietLabels: string[];
+  url: string;
+  image: string;
+  calories: number;
 
-  constructor(nameI: string, numberI: number, ingredientsI: string) {
-    this.name = nameI;
-    this.calorie = numberI;
-    this.ingredients = ingredientsI;
+  constructor( label: string, ingredientLines: string [], healthLabels: string [], dietLabels: string[], url: string, image: string, calories: number) {
+    this.label = label;
+    this.ingredientLines = ingredientLines;
+    this.healthLabels = healthLabels;
+    this.dietLabels = dietLabels;
+    this.url = url;
+    this.image = image;
+    this.calories = calories;
   }
 
   ngOnInit() {
