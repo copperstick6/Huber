@@ -1,1 +1,22 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+mat-grid-tile {
+    background: rgb(173, 216, 230);
+}
+
+.space {
+    padding: 4px;
+}
+
+.head {
+    font-family: Helvetica;
+}
+.example-card {
+    width: 400px;
+    background-color: #D1C4E9;
+}
+  
+.example-header-image {
+    background-image: url('https://ichef-1.bbci.co.uk/news/660/cpsprodpb/1325A/production/_88762487_junk_food.jpg');
+    background-size: cover;
+}
