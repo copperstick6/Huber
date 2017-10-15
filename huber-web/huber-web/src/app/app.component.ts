@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
 
   cards: RecpCardComponent[] = [];
+  rec_cards: RecpCardComponent[] = [];
 
   label: string;
   ingredientLines: string [];
@@ -21,20 +22,24 @@ export class AppComponent implements OnInit {
   image: string;
   calories: number;
 
+  rec_label: string;
+  rec_ingredientLines: string [];
+  rec_healthLabels: string [];
+  rec_dietLabels: string[];
+  rec_url: string;
+  rec_image: string;
+  rec_calories: number;
+  
+
+
 
   constructor(private http: HttpClient){
   
   }
 
   
-  ngOnInit(): void {
-    this.http.get('http://1094eb34.ngrok.io/getUserChoices').subscribe(data => {
-      console.log(data[0]);
-      var temp = JSON.stringify(data[0].recipe);
-      console.log(data[0].recipe.calories);
-      console.log(data[0].recipe.image);
-      console.log((Object.keys(data).length));
-
+  ngOnInit(): void {  
+    this.http.get('https://1094eb34.ngrok.io/getUserChoices').subscribe(data => {
       for (var i = 0; i < Object.keys(data).length; i++) {  
         this.label = data[i].recipe.label;
         this.ingredientLines = data[i].recipe.ingredientLines;
@@ -47,6 +52,22 @@ export class AppComponent implements OnInit {
         var addCard = new RecpCardComponent(this.label, this.ingredientLines, this.healthLabels, this.dietLabels, this.url, this.image, this.calories);
         this.cards.push(addCard);
       }
-    }); 
+    });
+    
+    this.http.get('https://1094eb34.ngrok.io/randomRecipe').subscribe(data => {
+      console.log(data['recipe'].url);
+      for (var i = 0; i < Object.keys(data).length; i++) {  
+        this.rec_label = data['recipe'].label;
+        this.rec_ingredientLines = data['recipe'].ingredientLines;
+        this.rec_healthLabels = data['recipe'].healthLabels;
+        this.rec_dietLabels = data['recipe'].dietLabels;
+        this.rec_url = data['recipe'].url;
+        this.rec_image = data['recipe'].image;
+        this.rec_calories = data['recipe'].calories;
+
+        var addCard = new RecpCardComponent(this.rec_label, this.rec_ingredientLines, this.rec_healthLabels, this.rec_dietLabels, this.rec_url, this.rec_image, this.rec_calories);
+        this.rec_cards.push(addCard);
+      }
+    });  
   }
 }

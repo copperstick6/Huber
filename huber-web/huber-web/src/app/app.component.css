@@ -15,7 +15,16 @@ mat-grid-tile {
     width: 400px;
     background-color: #D1C4E9;
 }
+
+.rec-card {
+    background-color: #C5E1A5;
+}
   
 .example-header-image {
     background-size: cover;
+}
+
+img.one{
+    height: 20%;
+    width: 20%;
 }
