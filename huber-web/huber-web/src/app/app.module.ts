@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatGridListModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { RecpCardComponent } from './recp-card/recp-card.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ import { RecpCardComponent } from './recp-card/recp-card.component';
     MatMenuModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    MatGridListModule,
+    HttpClientModule
+  ],  
   providers: [],
   bootstrap: [AppComponent]
 })

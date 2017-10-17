@@ -5,12 +5,56 @@
 
 
 <div style="text-align:center">
-  <h3>
-    Hello {{name}}, here are your recepies:
+  <h3 align="left" class="head">
+    Here are your recepies:
   </h3>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<div>
+  <mat-grid-list cols="1" rowHeight="fit" guttersize="20px" class="space" *ngFor="let card of cards;">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{card.label}}</mat-card-title>
+          <mat-card-subtitle>Calories: {{card.calories}}</mat-card-subtitle>
+          <mat-card-subtitle>Health Labels: {{card.healthLabels}}</mat-card-subtitle>
+          <mat-card-subtitle>Deit Labels: {{card.dietLabels}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{card.image}}>
+        <mat-card-content>
+          <p>
+            What you need: {{card.ingredientLines}}
+          </p>
+          <p>
+            Directions: {{card.url}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+  </mat-grid-list>
 </div>
 
-<recp-card></recp-card>
+<div>
+  <h5 align="left" class="head">
+    Potential Recommendations Based On Your Interests:
+  </h5>
 
-
+  <mat-grid-list cols="1" rowHeight="fit" guttersize="20px" class="space" *ngFor="let rec_card of rec_cards;">
+      <mat-card class="rec-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{rec_card.label}}</mat-card-title>
+          <mat-card-subtitle>Calories: {{rec_card.calories}}</mat-card-subtitle>
+          <mat-card-subtitle>Health Labels: {{rec_card.healthLabels}}</mat-card-subtitle>
+          <mat-card-subtitle>Deit Labels: {{rec_card.dietLabels}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="one" mat-card-image src={{rec_card.image}}>
+        <mat-card-content>
+          <p>
+            What you need: {{rec_card.ingredientLines}}
+          </p>
+          <p>
+            Directions: {{rec_card.url}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+  </mat-grid-list>
+</div>

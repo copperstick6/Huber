@@ -1,1 +1,30 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+mat-grid-tile {
+    background: rgb(173, 216, 230);
+}
+
+.space {
+    padding: 4px;
+}
+
+.head {
+    font-family: Helvetica;
+}
+.example-card {
+    width: 400px;
+    background-color: #D1C4E9;
+}
+
+.rec-card {
+    background-color: #C5E1A5;
+}
+  
+.example-header-image {
+    background-size: cover;
+}
+
+img.one{
+    height: 20%;
+    width: 20%;
+}
