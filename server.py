@@ -59,14 +59,14 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
 @app.route("/getUserChoices")
 @crossdomain(origin='*')
 def getChoices():
-	return str(userChoices)
+	return json.dumps(userChoices)
 
 @app.route('/randomRecipe')
 @crossdomain(origin='*')
 def getRandom():
 	if(len(randomList) > 0):
 		print random.choice(randomList)
-		return str(random.choice(randomList)).encode('utf-8')
+		return json.dumps(random.choice(randomList))
 	else:
 		s = "https://api.edamam.com/search?q=Italian"
 		s+= "&app_id=" + keys.appID() + "&app_key=" + keys.appSecret()
@@ -98,11 +98,11 @@ def getRandom():
 			userChoices.append(theJSON['hits'][0])
 			randomList.append(theJSON['hits'][1])
 			randomList.append(theJSON['hits'][2])
-			return theJSON['hits'][0]
+			return json.dumps(theJSON['hits'][0])
 @app.route('/getIngredients')
 @crossdomain(origin='*')
 def getIngredients():
-	return str(userIngredients)
+	return json.dumps(userIngredients)
 
 @app.route('/similaritems')
 @crossdomain(origin='*')
@@ -110,7 +110,7 @@ def getSims():
 	itemSorter.readItems()
 	itemSorter.readProducts()
 	itemSorter.popularItems()
-	return str(itemSorter.getSimilarItem(userIngredients))
+	return json.dumps(itemSorter.getSimilarItem(userIngredients))
 
 @app.route('/getFood', methods=['POST'])
 def getFood():
