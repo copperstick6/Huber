@@ -1,1 +1,15 @@
 # Huber
+
+LIVE DEMO AND MORE INFO: https://devpost.com/software/huber-zm7g80  
+
+## Huber
+Huber is new. It's different. All your life, you've seen your mom carrying around that stupid old piece of paper with all your week's groceries, but what always happens? YOU RUN SHORT, and have to eat eggs for dinner. Do you know what that is? SAD!
+
+## What is it?
+It's a Google Assistant app that assists you in getting quick and easy recipes to help you plan out your week. Don't you think it would be great if your groceries were delivered right to your door? Or if you got to see your past recipes? Well, it's all here. Once you choose an item, an order goes out to instacart for your food order, and then you get to see everything you've ordered in a website!
+
+## How does it work?
+While you're twiddling your thumbs waiting for your delicious ingredients to arrive at your door, we're working lightning speed flipping 1s and 0s to make sure your food and your future food is as great as possible. We predict what you're going to eat based on what you've chosen, and we recommend a list of products based on a NN that we've generated from a huge data set kindly provided to us by NCR. After you visit our website, you'll be able to see all that data in action. And next time, you might want to order one of these delicious items, driving up sales for NCR's items, instacart, and us!
+
+## How'd we do it?
+The Google Assistant component is created using NodeJS and the actions-on-google package. We had to define our own model to which we could begin to process user input. We then fed the raw user input through three processing stages: Key phrase extraction using Microsoft's APIs, a Food parsing library I wrote myself in the past 36 hours, which involves a fair bit of NLP, and the classic manual parsing to search for phrases that are common. Afterwards, we fed our sanitized input into an API to retrieve recipes, and then we have to do another round of input cleansing to parse out ingredients. The flow is very much the same. Having done so, the recipe should appear for the user. We place the order on Instacart, and we also create an order on the NCR API so that we can get live signaling on our web app. However, there's a lot more work to be done on the data analysis side. On app startup, we generate a Neural Network with all the transaction data kindly provided to us by NCR, finding correlations between product and user in order to find a correlation between the current user and the profiles that have already been generated based off of the NCR data. We then recommend a series of recipes and products that the user may like, based off of a profile that we've found is similar to the current user. All of this is done via python and numpy. We then send the data over to our Website, written in Angular, and display it to the user. The user is able to view nutritional data, recipe data, and all the other things associated with their orders, and even receive notification of completion of their instacart orders. Upon completion, we update our NCR API with the completed transaction.
